@@ -18,23 +18,23 @@ GLsizei d;
 // Programa Principal
 int main(int argc, char** argv) { 
 	glutInit(&argc, argv); // Inicializa a GLUT
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // Modo de operação da GLUT
-	glutInitWindowPosition(350, 100); //posiciona a janela na tela. A referência é o canto superior esquerdo
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB); // Modo de operaÃ§Ã£o da GLUT
+	glutInitWindowPosition(350, 100); //posiciona a janela na tela. A referÃªncia Ã© o canto superior esquerdo
 	glutInitWindowSize(640,480); // tamanho em pixels da janela
-	glutCreateWindow("Exercicio 5"); // Cria a janela passando como argumento o título da mesma
+	glutCreateWindow("Exercicio 5"); // Cria a janela passando como argumento o tÃ­tulo da mesma
 	Inicializa();
 	glutReshapeFunc(AlteraTamanhoJanela);
-	glutDisplayFunc(Desenha); // Registra função de redesenho
-	glutKeyboardFunc(Teclado); // Registra função de teclado
+	glutDisplayFunc(Desenha); // Registra funÃ§Ã£o de redesenho
+	glutKeyboardFunc(Teclado); // Registra funÃ§Ã£o de teclado
 	glutIdleFunc(Desenha);
-	glutTimerFunc(0, Timer, 1);
-	glutMainLoop(); // Inicia o processamento e aguarda interações do usuário
+	glutTimerFunc(33, Timer, 1);
+	glutMainLoop(); // Inicia o processamento e aguarda interaÃ§Ãµes do usuÃ¡rio
 	return 0;
 }
 
-// Inicializa parâmetros de rendering
+// Inicializa parÃ¢metros de rendering
 void Inicializa (void){   
-	// Define a cor de fundo da janela de visualização como preta
+	// Define a cor de fundo da janela de visualizaÃ§Ã£o como preta
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	x = 100.0;
 	y = 150.0;
@@ -44,7 +44,7 @@ void Inicializa (void){
 	glutIdleFunc(Desenha);
 }
 
-// Função callback chamada quando o tamanho da janela é alterado 
+// FunÃ§Ã£o callback chamada quando o tamanho da janela Ã© alterado 
 void AlteraTamanhoJanela(GLsizei w, GLsizei h){
 	
 	l = w;
@@ -54,21 +54,21 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h){
 	if(h == 0) 
 		h = 1;
 	
-	// Especifica as dimensões da Viewport
+	// Especifica as dimensÃµes da Viewport
 	glViewport(0, 0, w, h);
 	
 	// Inicializa o sistema de coordenadas
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	
-	// Estabelece a janela de seleção (left, right, bottom, top)
+	// Estabelece a janela de seleÃ§Ã£o (left, right, bottom, top)
 	gluOrtho2D (0.0f, l, 0.0f, a);
 		
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
 
-// Função de redesenho da janela de visualização
+// FunÃ§Ã£o de redesenho da janela de visualizaÃ§Ã£o
 void Desenha(void){
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);         // Limpe a tela e o buffer
@@ -82,7 +82,7 @@ void Desenha(void){
 	glutSwapBuffers();                                          // Troque os buffers.
 }
 
-// Função responsável pelo Triangulo
+// FunÃ§Ã£o responsÃ¡vel pelo Triangulo
 void Triangulo(void){
     glBegin(GL_TRIANGLES); //Controle com as setas do teclado
 	    glColor3f(1,0,0); //vermelho
@@ -94,28 +94,28 @@ void Triangulo(void){
     glEnd();
 }
 
-//Função para reconhecer o comando do teclado
+//FunÃ§Ã£o para reconhecer o comando do teclado
 void Teclado (unsigned char key, int x, int y) {
 	
-	if(key == 27) // Esc = sair da aplicação
+	if(key == 27) // Esc = sair da aplicaÃ§Ã£o
         exit(0);
 }
 
-// Função timer
+// FunÃ§Ã£o timer
 void Timer(int value)
 {
-    // Atualiza as coordenadas do triângulo
+    // Atualiza as coordenadas do triÃ¢ngulo
 	x += pX;
 	y += pY;
 	
-    // Direção na borda esquerda ou direita
+    // DireÃ§Ã£o na borda esquerda ou direita
     if(x > l-(2*d) || x < 0)
         pX = -pX;
 
-    // Direção na borda superior ou inferior
+    // DireÃ§Ã£o na borda superior ou inferior
     if(y > a-d || y < 0)
         pY = -pY;
           
 		glutPostRedisplay(); //Redesenha
-	glutTimerFunc(5,Timer, 1); //Aguarda 33 ms e volta
+	glutTimerFunc(33,Timer, 1); //Aguarda 33 ms e volta
 }
