@@ -50,6 +50,13 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h){
 	l = w;
 	a = h;
 	
+	// Controle da posição do triangulo apos redimensionamento de tela
+    	if(x > l-(2*d))
+    		x = l-(2*d);
+    	
+    	if(y > a-d)
+    		y = a-d;
+	
 	// Evita a divisao por zero
 	if(h == 0) 
 		h = 1;
