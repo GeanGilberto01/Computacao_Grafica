@@ -102,10 +102,10 @@ void Teclado (unsigned char key, int x, int y) {
     else if(key == 65 || key == 97){ // A - aumentar o triângulo da esquerda
     	tamanhoTrianguloEsquerda *= 1.5f;
     }
-    else if(key == 66 || key == 98){ // B -  Mover o triângulo da direita para esquerda
+    else if(key == 66 || key == 98){ // B -  Mover o triângulo da direita para baixo
     	posicaoTrianguloDireita -= 0.1f;
     }
-    else if(key == 67 || key == 99){ // C - Mover o triângulo da direita para direita
+    else if(key == 67 || key == 99){ // C - Mover o triângulo da direita para cima
     	posicaoTrianguloDireita += 0.1f;;
     }
     else if(key == 68 || key == 100){ // D - diminuir o triângulo da esquerda
